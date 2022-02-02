@@ -21,5 +21,5 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: miniapi
-              servicePort: 8080
+              serviceName: index-web-service
+              servicePort: 80
