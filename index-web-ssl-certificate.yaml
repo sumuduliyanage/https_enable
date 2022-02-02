@@ -3,7 +3,6 @@ kind: Certificate
 metadata:
   # different name
   name: miniapi-prod
-  namespace: mini-api
 spec:
   # dedicate secret for the TLS cert
   secretName: miniapi-production-certificate
@@ -11,4 +10,4 @@ spec:
     # referencing the production issuer
     name: letsencrypt-prod
   dnsNames:
-  - miniapi.thinktecture-demos.com
+  - 35.226.164.101.nip.io
