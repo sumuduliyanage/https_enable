@@ -1,17 +1,14 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: Issuer
 metadata:
-  name: test-selfsigned
+  name: letsencrypt
 spec:
-  selfSigned: {}
----
-apiVersion: cert-manager.io/v1alpha2
-kind: Certificate
-metadata:
-  name: selfsigned-cert
-spec:
-  dnsNames:
-    - 35.226.164.101.nip.io
-  secretName: selfsigned-cert-tls
-  issuerRef:
-    name: test-selfsigned
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: sumudul@wso2.com
+    privateKeySecretRef:
+      name: letsencrypt
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
