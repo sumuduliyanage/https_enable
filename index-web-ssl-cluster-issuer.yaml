@@ -1,14 +1,34 @@
-apiVersion: cert-manager.io/v1alpha2
+# prod-issuer.yml
+apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: letsencrypt
+  # different name
+  name: letsencrypt-prod
 spec:
   acme:
+    # now pointing to Let's Encrypt production API
     server: https://acme-v02.api.letsencrypt.org/directory
     email: sumudul@wso2.com
     privateKeySecretRef:
-      name: letsencrypt
+      # storing key material for the ACME account in dedicated secret
+      name: account-key-prod
     solvers:
     - http01:
-        ingress:
-          class: nginx
+       ingress:
+         class: nginx
+
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  # different name
+  name: miniapi-prod
+  namespace: mini-api
+spec:
+  # dedicate secret for the TLS cert
+  secretName: miniapi-production-certificate
+  issuerRef:
+    # referencing the production issuer
+    name: letsencrypt-prod
+  dnsNames:
+  - miniapi.thinktecture-demos.com
