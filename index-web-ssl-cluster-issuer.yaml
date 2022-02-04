@@ -1,16 +1,12 @@
-# prod-issuer.yml
 apiVersion: cert-manager.io/v1alpha2
 kind: Issuer
 metadata:
-  # different name
   name: letsencrypt-prod
 spec:
   acme:
-    # now pointing to Let's Encrypt production API
     server: https://acme-v02.api.letsencrypt.org/directory
     email: sumudul@wso2.com
     privateKeySecretRef:
-      # storing key material for the ACME account in dedicated secret
       name: account-key-prod
     solvers:
     - http01:
