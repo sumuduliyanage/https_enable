@@ -6,13 +6,11 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    # reference production issuer
     cert-manager.io/issuer: "letsencrypt-prod"
 spec:
   tls:
   - hosts:
     - 35.226.164.101.nip.io
-    # reference secret for production TLS certificate
     secretName: miniapi-production-certificate
   rules:
     - host: 35.226.164.101.nip.io
