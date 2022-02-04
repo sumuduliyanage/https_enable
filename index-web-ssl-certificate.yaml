@@ -1,13 +1,10 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
-  # different name
   name: miniapi-prod
 spec:
-  # dedicate secret for the TLS cert
   secretName: miniapi-production-certificate
   issuerRef:
-    # referencing the production issuer
     name: letsencrypt-prod
   dnsNames:
   - 35.226.164.101.nip.io
